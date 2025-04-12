@@ -7,28 +7,16 @@ from random import randint, uniform, choice
 from selenium import webdriver
 from time import sleep
 
+"""
 nok_exchange_rate = 11.7632
 usd_exchange_rate = 1.079
-"""
+
 driver = webdriver.Edge()
 driver.get('https://neal.fun/sun-vs-moon')
 driver.maximize_window()
-"""
 
 
 def calc_hysa_yearly(years, yearly_rate, investment_per_year):
-    """
-    Calculate the yearly HYSA interest based on the years, yearly rate and 
-    investment per year.
-
-    Parameters:
-    years (int): The number of years to calculate the interest for.
-    yearly_rate (float): The yearly interest rate percentage.
-    investment_per_year (float): The amount of money invested per year.
-
-    Returns:
-    float: The total interest earned after the given number of years.
-    """
     fraction = yearly_rate / 100
     invs_after_rate = [investment_per_year + investment_per_year * fraction]
 
@@ -39,18 +27,6 @@ def calc_hysa_yearly(years, yearly_rate, investment_per_year):
     return round(invs_after_rate[-1] - investment_per_year, 2)
 
 def calc_hysa(years, yearly_rate, investment):
-    """
-    Calculate the total interest earned and the total value with investment
-    over a number of years with a given yearly interest rate.
-
-    Parameters:
-    years (int): The number of years over which the interest is calculated.
-    yearly_rate (float): The annual interest rate percentage.
-    investment (float): The initial investment amount.
-
-    Returns:
-    float: The total interest earned after the given number of years.
-    """
     fraction = yearly_rate / 100
     invs_after_rate = [investment + investment * fraction]
 
@@ -78,18 +54,6 @@ def sandp_500(upfront_investment, monthly_investment, years):
     return round(total, 2)
 
 def calc_gov_bonds_10_yrs(years, investment):
-    """
-    Calculate the total interest earned and the total value with investment
-    over a number of years with a given yearly interest rate based on the
-    historical average yearly return of 10-year government bonds.
-
-    Parameters:
-    years (int): The number of years over which the interest is calculated.
-    investment (float): The initial investment amount.
-
-    Returns:
-    float: The total interest earned after the given number of years.
-    """
     ten_yr_rate = 0.03638
     ten_yr_return = investment * ten_yr_rate
 
@@ -97,34 +61,12 @@ def calc_gov_bonds_10_yrs(years, investment):
     return round(ten_yr_return, 2)
 
 def calc_etfs(years, investment):
-    """
-    Calculate the total interest earned and the total value with investment
-    over a number of years with a given yearly interest rate based on the
-    historical average yearly return of ETFs.
-
-    Parameters:
-    years (int): The number of years over which the interest is calculated.
-    investment (float): The initial investment amount.
-
-    Returns:
-    float: The total interest earned after the given number of years.
-    """
     rate = 0.22
 
     print(f'{round(investment * rate * years, 2):,}')
     return round(investment * rate * years, 2)   
 
 def find_monthly_salary(hourly_pay, daily_hr):
-    """
-    Calculate and print the monthly salary in Euros, USD, and NOK based on hourly pay and daily hours worked.
-
-    Parameters:
-    hourly_pay (float): The hourly wage.
-    daily_hr (int): The number of hours worked per day.
-
-    Output:
-    Prints the monthly salary in Euros, USD, and NOK.
-    """
     daily_earn = hourly_pay * daily_hr
     monthly_salary = daily_earn * 10
 
@@ -133,68 +75,22 @@ def find_monthly_salary(hourly_pay, daily_hr):
     print(f'{round(monthly_salary * nok_exchange_rate):,} kr')
 
 def eur_to_nok(euro):
-    """
-    Convert a given number of Euros to NOK.
-
-    Parameters:
-    euro (float): The amount of Euros to convert.
-
-    Returns:
-    float: The converted amount in NOK.
-    """
     print(f'{round(euro * nok_exchange_rate, 2):,}')
     return round(euro * nok_exchange_rate, 2)
 
 def nok_to_eur(nok):
-    """
-    Convert a given number of NOK to Euros.
-
-    Parameters:
-    nok (float): The amount of NOK to convert.
-
-    Returns:
-    float: The converted amount in Euros.
-    """
     print(f'{round(nok / nok_exchange_rate, 2):,}')
     return round(nok / nok_exchange_rate, 2)
 
 def eur_to_usd(euro):
-    """
-    Convert a given number of Euros to USD.
-
-    Parameters:
-    euro (float): The amount of Euros to convert.
-
-    Returns:
-    float: The converted amount in USD.
-    """
     print(f'{round(euro * usd_exchange_rate, 2):,}')
     return round(euro * usd_exchange_rate, 2)
 
 def usd_to_eur(usd):
-    """
-    Convert a given number of USD to Euros.
-
-    Parameters:
-    usd (float): The amount of USD to convert.
-
-    Returns:
-    float: The converted amount in Euros.
-    """
     print(f'{round(usd / usd_exchange_rate, 2):,}')
     return round(usd / usd_exchange_rate, 2)
 
 def num_combinations(choice_amt, length):  # 1st is for example 26 for alphabet, 2nd is length of code (4 letters).
-    """
-    Calculate the number of combinations of a given set of choices of a given length.
-
-    Parameters:
-    choice_amt (int): The number of choices. For example, 26 for the alphabet.
-    length (int): The length of the code. For example, 4 for a 4-letter code.
-
-    Returns:
-    int: The number of combinations of the given set of choices of the given length.
-    """
     original_choice_amt = choice_amt
 
     for i in range(length - 1):
@@ -204,18 +100,6 @@ def num_combinations(choice_amt, length):  # 1st is for example 26 for alphabet,
     return round(choice_amt, 2)
 
 def savings_goal(investment, quarter_yearly_rate, goal):
-    """
-    Calculate the number of years it takes to reach a savings goal based on an
-    initial investment and a given quarter yearly interest rate.
-
-    Parameters:
-    investment (float): The initial amount of money to invest.
-    quarter_yearly_rate (float): The interest rate percentage per quarter year.
-    goal (float): The savings goal.
-
-    Returns:
-    float: The number of years it takes to reach the savings goal.
-    """
     fraction_rate = quarter_yearly_rate / 100
     total = investment
     years = 0
@@ -227,26 +111,13 @@ def savings_goal(investment, quarter_yearly_rate, goal):
     print(f'{round(years, 2):,}')
     return round(years, 2)
 
-"""
-Identifier:
-E1CFAC71-A97B-4CB8-A5AB-53C6F52C22C4
+# Identifier:
+# E1CFAC71-A97B-4CB8-A5AB-53C6F52C22C4
 
-Recovery Key:
-496903-396847-363693-524293-615263-149611-702042-465102
-"""
+# Recovery Key:
+# 496903-396847-363693-524293-615263-149611-702042-465102
 
 def tax_calculator(country_code, income):
-    """
-    Calculate the net income for the given country code and income.
-    
-    Parameters:
-    country_code (str): The country code of the country you want to calculate the tax for.
-    income (float): The monthly income.
-    
-    Returns:
-    float: The net income per month after tax.
-    """
-    
     income_copy = int(income * nok_exchange_rate)
     common_tax_rate = 22  # Common Tax - 22%
     nic_rate = 7.8  # National Insurance Contribution - 7.8%
@@ -275,18 +146,12 @@ def tax_calculator(country_code, income):
         return result
 
 def click(x, y):
-    """Set the mouse cursor to the given (x, y) coordinates and perform a quick left mouse click."""
     SetCursorPos((x, y))
     mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
     sleep(0.01)
     mouse_event(MOUSEEVENTF_LEFTUP, 0, 0)
 
 def catclicker():
-    """
-    Moves the mouse cursor to a random position on the screen and performs a quick left mouse click every frame until the 'q' key is pressed.
-
-    This function is for entertainment purposes only and is not intended for any actual use.
-    """
     while not is_pressed('q'):
         pos_x = randint(0, 1271) # 0, 2542 # Half: 0, 1271
         pos_y = randint(115, 1363) # 115, 1363 # Half: 115, 682
@@ -294,11 +159,6 @@ def catclicker():
         click(pos_x, pos_y)
 
 def autoclicker():
-    """
-    Continuously performs a mouse click at the current cursor position until the 'q' key is pressed.
-
-    The function simulates a left mouse button press and release with a short delay between actions.
-    """
     while not is_pressed('q'):
         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
         sleep(0.01)
@@ -307,14 +167,6 @@ def autoclicker():
         sleep(uniform(0.01, 0.05))
 
 def autoclicker_amt(click_amt):
-    """
-    Simulates a left mouse button click the given amount of times with a short delay between actions.
-
-    The function stops when the 'q' key is pressed.
-
-    Args:
-        click_amt (int): The amount of times to click the mouse.
-    """
     for i in range(click_amt):
         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
         sleep(0.01)
@@ -324,27 +176,11 @@ def autoclicker_amt(click_amt):
             quit()
 
 def autoclicker_no_limit():
-    """
-    Continuously performs a mouse click at the current cursor position until the 'q' key is pressed.
-
-    The function simulates a left mouse button press and release without any delay between actions.
-    """
     while not is_pressed('q'):
         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
         mouse_event(MOUSEEVENTF_LEFTUP, 0, 0)
 
 def chance_in_row(chance, times):
-    """
-    Calculates the chance of a given percentage occurring in a row a given amount of times.
-
-    The function takes two arguments, the chance of the event occurring (in percentage) and the amount of times to calculate the chance for.
-    The function then calculates the final chance of the event occurring in a row that amount of times.
-    The function returns the final chance as a string, rounded to two decimal places.
-
-    Args:
-        chance (int): The percentage chance of the event occurring.
-        times (int): The amount of times to calculate the chance for.
-    """
     fraction = chance / 100
     for i in range(times):
         fraction *= fraction
@@ -357,7 +193,6 @@ def chance_in_row(chance, times):
 def typing(text):
     write(text, delay=0.02)
 
-"""
 def sun_vs_moon():
     moon = driver.find_element(By.ID, 'moon-btn')
     cookies = driver.find_element(By.CSS_SELECTOR, 'body > div.fc-consent-root > div.fc-dialog-container > div.fc-dialog.fc-choice-dialog > div.fc-footer-buttons-container > div.fc-footer-buttons > button.fc-button.fc-cta-consent.fc-primary-button > p')
@@ -368,7 +203,6 @@ def sun_vs_moon():
     sleep(1)
     while True:
         moon.click()
-"""
 
 def convert_temps():
     c_or_f = input('''Would you like to convert to:
@@ -382,8 +216,9 @@ def convert_temps():
     elif c_or_f == "2":
         celsius_amt = input('How many Celsius? ')
         return float(celsius_amt) * (9 / 5) + 32
+"""
 
-
+print(f'{randint(1, 1000)} * {randint(1, 1000)}')
 
 # Vienna, AT -> Maribor, SLO -> Zagreb, HR -> Sarajevo, BIH -> Budapest, H -> Bratislava, SK -> Brno, CZ -> Prague, CZ
 # -> Warsaw, PL -> Berlin, D -> Amsterdam, NL -> Brussels, B -> Paris, F -> Dijon, F -> Zürich, CH -> Milan, I -> Turin,
