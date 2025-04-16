@@ -218,7 +218,7 @@ def convert_temps():
         return float(celsius_amt) * (9 / 5) + 32
 """
 
-print(f'{randint(1, 1000)} * {randint(1, 1000)}')
+
 
 # Vienna, AT -> Maribor, SLO -> Zagreb, HR -> Sarajevo, BIH -> Budapest, H -> Bratislava, SK -> Brno, CZ -> Prague, CZ
 # -> Warsaw, PL -> Berlin, D -> Amsterdam, NL -> Brussels, B -> Paris, F -> Dijon, F -> Zürich, CH -> Milan, I -> Turin,
