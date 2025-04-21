@@ -14,7 +14,7 @@ def click(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
 
 
-pytesseract.pytesseract.tesseract_cmd = r"E:\Desk\python files\Pytesseract\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = r"E:\Desk\Pytesseract\tesseract.exe"
 y_coords = [766, 959, 1163, 1370]
 
 
