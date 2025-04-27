@@ -1,4 +1,3 @@
-import cv2
 import pyautogui
 import time
 import win32api
@@ -12,81 +11,65 @@ def click(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
 
 
-def convert_to_grayscale(image_path):
-    image = cv2.imread(image_path)
-    grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    return grayscale_image
-
-
 image_positions = {
-    'algeria.png': (1086, 634),
-    'angola.png': (1203, 961),
-    'benin.png': (1052, 779),
-    'botswana.png': (1249, 1046),
-    'burkina_faso.png': (1033, 745),
-    'burundi.png': (1309, 891),
-    'cameroon.png': (1161, 796),
-    'cape_verde.png': (830, 711),
-    'central_african_republic.png': (1235, 800),
-    'chad.png': (1208, 756),
-    'comoros.png': (1430, 966),
-    'democratic_republic_of_the_congo.png': (1246, 844),
-    'djibouti.png': (1427, 752),
-    'egypt.png': (1284, 640),
-    'equatorial_guinea.png': (1137, 849),
-    'eritrea.png': (1380, 723),
-    'eswatini.png': (1325, 1117),
-    'ethiopia.png': (1368, 797),
-    'gabon.png': (1161, 851),
-    'ghana.png': (1030, 802),
-    'guinea_bissau.png': (897, 749),
-    'guinea.png': (951, 774),
-    'ivory_coast.png': (997, 807),
-    'kenya.png': (1361, 854),
-    'lesotho.png': (1293, 1148),
-    'liberia.png': (952, 809),
-    'libya.png': (1249, 658),
-    'madagascar.png': (1451, 1033),
-    'malawi.png': (1345, 966),
-    'mali.png': (1046, 708),
-    'mauritania.png': (969, 707),
-    'mauritius.png': (1563, 1042),
-    'morocco.png': (966, 567),
-    'mozambique.png': (1332, 1006),
-    'namibia.png': (1191, 1045),
-    'niger.png': (1141, 727),
-    'nigeria.png': (1133, 792),
-    'republic_of_the_congo.png': (1191, 847),
-    'rwanda.png': (1311, 884),
-    'sao_tome_and_principe.png': (1104, 849),
-    'senegal.png': (913, 737),
-    'seychelles.png': (1512, 913),
-    'sierra_leone.png': (930, 782),
-    'somalia.png': (1429, 831),
-    'south_africa.png': (1259, 1118),
-    'south_sudan.png': (1291, 801),
-    'sudan.png': (1277, 752),
-    'tanzania.png': (1325, 906),
-    'the_gambia.png': (892, 733),
-    'togo.png': (1044, 792),
-    'tunisia.png': (1122, 553),
-    'uganda.png': (1328, 848),
-    'western_sahara.png': (909, 636),
-    'zambia.png': (1268, 980),
-    'zimbabwe.png': (1304, 1025)
+    'albania.png': (1310, 1058),
+    'andorra.png': (1016, 1027),
+    'austria.png': (1234, 919),
+    'belarus.png': (1426, 776),
+    'belgium.png': (1077, 847),
+    'bosnia.png': (1276, 996),
+    'bulgaria.png': (1273, 982),
+    'croatia.png': (1256, 961),
+    'cyprus.png': (1508, 1167),
+    'czechia.png': (1229, 869),
+    'denmark.png': (1148, 712),
+    'estonia.png': (1405, 635),
+    'finland.png': (1398, 523),
+    'france.png': (1088, 896),
+    'germany.png': (1163, 853),
+    'greece.png': (1344, 1100),
+    'hungary.png': (1282, 926),
+    'iceland.png': (926, 520),
+    'ireland.png': (911, 785),
+    'italy.png': (1166, 970),
+    'kosovo.png': (1324, 1023),
+    'latvia.png': (1403, 689),
+    'liechtenstein.png': (1157, 931),
+    'lithuania.png': (1374, 733),
+    'luxembourg.png': (1100, 869),
+    'malta.png': (1220, 1158),
+    'moldova.png': (1438, 923),
+    'monaco.png': (1116, 1004),
+    'montenegro.png': (1298, 1021),
+    'netherlands.png': (1090, 801),
+    'macedonia.png': (1339, 1050),
+    'norway.png': (1143, 600),
+    'poland.png': (1314, 814),
+    'portugal.png': (882, 1072),
+    'romania.png': (1399, 967),
+    'russia.png': (1536, 734),
+    'san_marino.png': (1195, 995),
+    'serbia.png': (1323, 996),
+    'slovakia.png': (1293, 893),
+    'slovenia.png': (1226, 951),
+    'spain.png': (972, 1085),
+    'sweden.png': (1233, 538),
+    'switzerland.png': (1127, 931),
+    'ukraine.png': (1436, 872),
+    'uk.png': (985, 799),
+    'vatican.png': (1198, 1047),
 }
 
-threshold = 0.8
-match_found = False
-
 for flag, coords in image_positions.items():
-    match = pyautogui.locateOnScreen(f'flags/{flag}', confidence=threshold, region=[1604, 452, 96, 63], grayscale=True)
+    try:
+        match = pyautogui.locateOnScreen(f'E:/Desk/Programming/Python/Projects/images/flags/{flag}', region=[0, 156, 2559, 1119])
+    except pyautogui.ImageNotFoundException:
+        continue
 
-    if match:
-        print(f'Found {flag} at {coords}!')
+    if match is None:
+        continue
+    else:
         click(*coords)
-        match_found = True
-        break
 
 # x-axis: 1604 - 1700 (Diff: 96)
 # y-axis: 452 - 515 (Diff: 63)
