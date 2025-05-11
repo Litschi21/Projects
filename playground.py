@@ -219,7 +219,6 @@ def convert_temps():
 """
 
 
-
 # Vienna, AT -> Maribor, SLO -> Zagreb, HR -> Sarajevo, BIH -> Budapest, H -> Bratislava, SK -> Brno, CZ -> Prague, CZ
 # -> Warsaw, PL -> Berlin, D -> Amsterdam, NL -> Brussels, B -> Paris, F -> Dijon, F -> Zürich, CH -> Milan, I -> Turin,
 # I -> Nice, MC -> Marseille, F -> Avignon, F -> Montpellier, F -> Béziers, F -> Andorra la Vella, AND -> Huesca, E ->
