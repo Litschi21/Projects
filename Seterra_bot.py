@@ -1,7 +1,5 @@
-import cv2
 import keyboard
 import pyautogui
-import numpy as np
 import time
 import win32api
 import win32con
@@ -62,42 +60,19 @@ image_positions = {
     'vatican.png': (1199, 1147)
 }
 
-templates = {}
-for flag in image_positions.keys():
-    try:
-        path = f'E:/Desk/Programming/Python/Projects/images/flags/{flag}'
-        img = cv2.imread(path)
-        if img is not None:
-            templates[flag] = img
-    except Exception as e:
-        print(f"Failed to load {flag}")
-
 print("Switch to your target window in 2 seconds...")
 time.sleep(2)
 
-region = (1548, 518, 164, 90)
-
 while not keyboard.is_pressed('q'):
-    screenshot = pyautogui.screenshot(region=region)
-    screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
-
-    best_match = None
-    best_score = 0
-
-    for flag, template in templates.items():
+    for flag, coords in image_positions.items():
         try:
-            h, w = screenshot.shape[:2]
-            resized_template = cv2.resize(template, (w, h))
-            
-            result = cv2.matchTemplate(screenshot, resized_template, cv2.TM_CCOEFF_NORMED)
-            _, max_val, _, _ = cv2.minMaxLoc(result)
-
-            if max_val > best_score:
-                best_score = max_val
-                best_match = flag
+            match = pyautogui.locateOnScreen(
+                f'E:/Desk/Programming/Python/Projects/images/flags/{flag}', 
+                region=(1548, 518, 164, 90),
+                confidence=0.95
+            )
+        
+            if match:
+                click(*coords)
         except Exception as e:
-            continue
-
-        if best_score > 0.8 and best_match:
-            coords = image_positions[best_match]
-            click(*coords)
+            pass
