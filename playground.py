@@ -1,11 +1,11 @@
-from win32con import MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP
-from pyautogui import moveTo, dragTo, screenshot
-from win32api import mouse_event, SetCursorPos
-from keyboard import is_pressed, write, wait
-from selenium.webdriver.common.by import By
-from random import randint, uniform, choice
-from selenium import webdriver
-from time import sleep
+# import keyboard
+# import pyautogui
+import random
+# from selenium.webdriver.common.by import By
+# from selenium import webdriver
+# import time
+# import win32api
+# import win32con
 
 """
 nok_exchange_rate = 11.7632
@@ -148,7 +148,7 @@ def tax_calculator(country_code, income):
 def click(x, y):
     SetCursorPos((x, y))
     mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
-    sleep(0.01)
+    time.sleep(0.01)
     mouse_event(MOUSEEVENTF_LEFTUP, 0, 0)
 
 def catclicker():
@@ -161,15 +161,15 @@ def catclicker():
 def autoclicker():
     while not is_pressed('q'):
         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
-        sleep(0.01)
+        time.sleep(0.01)
         mouse_event(MOUSEEVENTF_LEFTUP, 0, 0)
 
-        sleep(uniform(0.01, 0.05))
+        time.sleep(uniform(0.01, 0.05))
 
 def autoclicker_amt(click_amt):
     for i in range(click_amt):
         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0)
-        sleep(0.01)
+        time.sleep(0.01)
         mouse_event(MOUSEEVENTF_LEFTUP, 0, 0)
 
         if is_pressed('q'):
@@ -197,10 +197,10 @@ def sun_vs_moon():
     moon = driver.find_element(By.ID, 'moon-btn')
     cookies = driver.find_element(By.CSS_SELECTOR, 'body > div.fc-consent-root > div.fc-dialog-container > div.fc-dialog.fc-choice-dialog > div.fc-footer-buttons-container > div.fc-footer-buttons > button.fc-button.fc-cta-consent.fc-primary-button > p')
 
-    sleep(3)
+    time.sleep(3)
     cookies.click()
 
-    sleep(1)
+    time.sleep(1)
     while True:
         moon.click()
 
@@ -218,6 +218,29 @@ def convert_temps():
         return float(celsius_amt) * (9 / 5) + 32
 """
 
+def num_combinations(choice_amt, length):  # 1st is for example 26 for alphabet, 2nd is length of code (4 letters).
+    original_choice_amt = choice_amt
+
+    for i in range(length - 1):
+        choice_amt *= original_choice_amt
+
+    print(f'{round(choice_amt, 2):,}')
+    return round(choice_amt, 2)
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+def unique_messages(message_amt, length):
+    messages = set()
+
+    while len(messages) < message_amt:
+        letters = [random.choice(alphabet) for _ in range(length)]
+        str_letters = ''.join(letters)
+        
+        messages.add(str_letters)
+    
+    return list(messages)
+
+# num_combinations(26, 30)
+print(unique_messages(500_000, 30))
 
 # Vienna, AT -> Maribor, SLO -> Zagreb, HR -> Sarajevo, BIH -> Budapest, H -> Bratislava, SK -> Brno, CZ -> Prague, CZ
 # -> Warsaw, PL -> Berlin, D -> Amsterdam, NL -> Brussels, B -> Paris, F -> Dijon, F -> Zürich, CH -> Milan, I -> Turin,

@@ -1,0 +1,21 @@
+{
+    "date": "2025-06-11",
+    "hours": 7,
+    "minutes": 28,
+    "seconds": 20
+}
+
+{
+    "date": "2025-06-12",
+    "hours": 7,
+    "minutes": 56,
+    "seconds": 6
+}
+
+{
+    "date": "2025-06-13",
+    "hours": 8,
+    "minutes": 26,
+    "seconds": 35
+}
+

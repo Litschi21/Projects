@@ -1,16 +1,22 @@
 import numpy as np
+from PIL import Image
 from pyautogui import write
+import pytesseract
 from random import randint
 from time import sleep
 from win32con import MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP
 from win32api import mouse_event, SetCursorPos
 
+pytesseract.pytesseract.tesseract_cmd = r"E:\Desk\Pytesseract\tesseract.exe"
+
 cell_size = 55
-grid_origin_x = 684
-grid_origin_y = 248
+grid_origin_x = 816
+grid_origin_y = 259
 rand_nums = []
 rand_pos_xs = []
 rand_pos_ys = []
+
+grid_region = [790, 233, 55, 55]
 
 def click(x, y):
     SetCursorPos((x, y))
@@ -18,16 +24,26 @@ def click(x, y):
     sleep(0.01)
     mouse_event(MOUSEEVENTF_LEFTUP, 0, 0)
 
+grid1 = []
+grid2 = []
+grid3 = []
+grid4 = []
+grid5 = []
+grid6 = []
+grid7 = []
+grid8 = []
+grid9 = []
+
 grid = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 6],
-    [0, 0, 0, 8, 6, 0, 2, 0, 0],
-    [0, 0, 3, 9, 0, 0, 0, 0, 8],
-    [0, 2, 0, 0, 0, 0, 0, 7, 0],
-    [6, 8, 9, 0, 0, 0, 0, 0, 0],
-    [0, 3, 0, 0, 0, 0, 0, 2, 5],
-    [0, 0, 0, 0, 0, 5, 1, 4, 0],
-    [9, 0, 0, 0, 0, 3, 0, 0, 0],
-    [0, 0, 1, 0, 2, 0, 0, 0, 0]
+    grid1,
+    grid2,
+    grid3,
+    grid4,
+    grid5,
+    grid6,
+    grid7,
+    grid8,
+    grid9
 ]
 
 grid_copy = [row[:] for row in grid]
@@ -72,6 +88,18 @@ def solve(grid):
     
     return False
 
+def read_sudoku(grid_region):
+    for i in range(9):
+        for j in range(9):
+            screenshot = screenshot(region=grid_region)
+            screenshot.save("images/sudoku.png")
+
+            img = Image.open()
+            output = pytesseract.image_to_string(img)
+            grid str(i).append(output)
+            
+            grid_region = [x+55 for x in grid_region]
+
 solve(grid)
 print(np.array(grid))
 
@@ -89,8 +117,8 @@ for row in range(9):
         if num == 0:
             continue
 
-        x = grid_origin_x + col * cell_size + cell_size // 2
-        y = grid_origin_y + row * cell_size + cell_size // 2
+        x = grid_origin_x + col * cell_size
+        y = grid_origin_y + row * cell_size
 
         click(x, y)
         write(str(num), interval=0.02)

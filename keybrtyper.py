@@ -6,7 +6,7 @@ import random
 import time
 
 def typing(text, delay):
-    keyboard.write(text, delay=random.uniform(delay*1.05, delay*1.05))
+    keyboard.write(text, delay=random.uniform(delay*0.95, delay*1.05))
 
 def screenshot():
     # Take a screenshot and save it

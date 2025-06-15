@@ -4,9 +4,9 @@ import random
 import time
 
 def typing(text, delay):
-    keyboard.write(text, delay=random.uniform(delay*1.05, delay*1.05))
+    keyboard.write(text, delay=random.uniform(delay*0.95, delay*1.05))
 
-msg = "0"*301
+msg = ""
 
 # Wait for user to give the go to take the screenshot
 keyboard.wait('esc')
@@ -14,7 +14,7 @@ time.sleep(0.01)
 
 # Time how long the function takes and start typing
 start = time.time()
-typing(msg, 0.012)
+typing(msg, 0.06)
 end = time.time()
 
 # Print the time it took in seconds
